@@ -12,8 +12,15 @@ def main():
 		subset_df = df[df.Country.isin(selected_countries)]
 	else:
 		subset_df = df[df.Country.isin(['India'])]
-	fig = px.line(subset_df, x="Date", y="Confirmed", color='Country')
-	st.write(fig)
+	fig1 = px.line(subset_df, x="Date", y="Confirmed", color='Country')
+	fig2 = px.line(subset_df, x="Date", y="Recovered", color='Country')
+	fig3 = px.line(subset_df, x="Date", y="Deaths", color='Country')
+	st.header('Confirmed Cases')
+	st.write(fig1)
+	st.header('Recovered Cases')
+	st.write(fig2)
+	st.header('Deaths')
+	st.write(fig3)
 @st.cache
 def load_data():
 	return pd.read_csv('https://raw.githubusercontent.com/datasets/covid-19/master/data/countries-aggregated.csv')
